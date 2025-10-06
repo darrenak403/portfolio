@@ -4,6 +4,7 @@ import About from "../sections/About";
 import Services from "../sections/Services";
 import Work from "../sections/Work";
 import Marquee from "../sections/Marquee";
+import CTA from "../components/CTA";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Services />
       <Work />
       <Marquee />
+      <CTA />
     </>
   );
 };
