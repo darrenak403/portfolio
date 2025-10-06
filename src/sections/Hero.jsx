@@ -1,10 +1,85 @@
-import React from "react";
+import React, {useRef} from "react";
 import GradientButton from "../components/GradientButton";
+import {gsap} from "gsap";
+import {useGSAP} from "@gsap/react";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
+import {SplitText} from "gsap/SplitText";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 
 const Hero = () => {
+  const heroRef = useRef(null);
+
+  // pin hero section
+  useGSAP(
+    () => {
+      ScrollTrigger.create({
+        trigger: heroRef.current, // element để trigger animation / scroll logic
+        start: "top top", // khi top của trigger chạm top của viewport -> bắt đầu
+        end: "bottom top", // khi bottom của trigger chạm top của viewport -> kết thúc
+        pin: true, // ghim element tại chỗ trong thời gian scroll giữa start và end
+        pinSpacing: false, // nếu false sẽ không thêm spacing sau khi ghim (không tạo khoảng trống)
+        scrub: 1, // đồng bộ animation với scroll; số >0 làm animation mượt theo scrub duration
+      });
+
+      SplitText.create("h1", {
+        type: "lines, words, chars", // tách thành lines và words để animate theo từng từ/dòng
+        mask: "lines", // dùng mask cho lines để animation 'reveal' mượt
+        autoSplit: true, // tự động split DOM nội dung
+        onSplit(self) {
+          gsap.from(self.words, {
+            y: 100, // bắt đầu dịch xuống 100px và di chuyển lên đến vị trí ban đầu
+            opacity: 0, // bắt đầu trong suốt -> fade in
+            stagger: 0.1, // mỗi từ bắt đầu animation cách nhau 0.1s
+          });
+        },
+      });
+
+      SplitText.create("h2", {
+        type: "lines, words", // tương tự h1
+        mask: "lines",
+        autoSplit: true,
+        onSplit(self) {
+          gsap.from(self.words, {
+            y: 100,
+            opacity: 0,
+            stagger: 0.1,
+            delay: 0.3, // chậm hơn h1 0.3s để có thứ tự xuất hiện
+          });
+        },
+      });
+
+      gsap.from(".gradient-btn", {
+        opacity: 0, // bắt đầu từ trong suốt
+        y: 40, // dịch xuống 40px rồi về vị trí
+        duration: 0.5, // thời lượng animation 0.5s
+        ease: "power2.out", // easing để chuyển động mượt
+        delay: 1.25, // chờ trước khi animation bắt đầu
+      });
+
+      gsap.from(".star svg", {
+        scale: 0, // phóng to từ 0 -> 1
+        rotate: 180, // bắt đầu xoay 180deg
+        opacity: 0, // fade in
+        transformOrigin: "center center", // điểm neo cho transform
+        duration: 1.3, // thời lượng
+        ease: "back.out(1.7)", // easing với overshoot
+        onComplete: () => {
+          gsap.to(".star", {
+            rotate: "+=360", // tiếp tục quay thêm 360deg
+            duration: 20, // thời gian cho 1 vòng quay
+            ease: "linear", // quay đều
+            repeat: -1, // lặp vô hạn
+          });
+        },
+      });
+    },
+    {scope: heroRef}
+  );
+
   return (
     <>
-      <div className="relative overflow-hidden z-0">
+      <div ref={heroRef} className="relative overflow-hidden z-0">
         <div className="main-container h-screen flex flex-col lg:justify-center items-start lg:py-12 max-lg:pt-40">
           <h1 className="text-3xl lg:text-[3.2vw] uppercase font-heading font-semibold">
             DarrenAK 403
@@ -15,7 +90,7 @@ const Hero = () => {
           <GradientButton
             text="Let's Talk"
             link="mailto:ngothanhdat4002@gmail.com"
-            className=""
+            className="gradient-btn"
           />
         </div>
 

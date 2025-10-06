@@ -10,7 +10,7 @@ const Services = () => {
       </div>
 
       <div className="relative">
-        <div className="bg-black text-white py-16 lg:py-20 ">
+        <div className="bg-black text-white py-16 lg:pt-20 pb-[40rem] sticky top-4 ">
           <div className="main-container grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             {/* left side */}
             <div className="flex gap-6 lg:gap-8">
@@ -32,7 +32,7 @@ const Services = () => {
             </div>
           </div>
         </div>
-        <div className="bg-[#e9e9f0] text-black py-16 lg:py-20 ">
+        <div className="bg-[#e9e9f0] text-black pt-16 lg:pt-20 pb-[23rem] sticky top-1/3 ">
           <div className="main-container grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             {/* left side */}
             <div className="flex gap-6 lg:gap-8">
@@ -54,7 +54,7 @@ const Services = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white text-black py-16 lg:py-20 ">
+        <div className="bg-white text-black py-16 lg:py-20 sticky top-2/3 ">
           <div className="main-container grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             {/* left side */}
             <div className="flex gap-6 lg:gap-8">
