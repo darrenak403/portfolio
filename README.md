@@ -1,16 +1,68 @@
-# React + Vite
+# Portfolio — React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## What is this?
 
-Currently, two official plugins are available:
+A small, focused personal portfolio template built with React + Vite.  
+Purpose: to learn and practice Tailwind CSS (utility-first responsive styling) and GSAP (animations, ScrollTrigger, SplitText).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key features
 
-## React Compiler
+- Vite dev server with HMR for fast iteration
+- Tailwind CSS for responsive utility classes
+- GSAP with ScrollTrigger and SplitText for smooth, scroll-driven animations
+- Simple component structure: Hero, About, Services, Work, Footer, reusable components
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Quick start (Windows)
 
-## Expanding the ESLint configuration
+1. Install Node.js (LTS).
+2. Open a terminal in the project folder:
+   - npm install
+   - npm run dev
+3. Open http://localhost:5173
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Useful scripts
+
+- npm run dev — start development server
+- npm run build — build production bundle
+- npm run preview — preview production build locally
+
+## Project structure (important parts)
+
+- src/
+  - sections/ — page sections (Hero, About, Services, Work, ...)
+  - components/ — reusable UI (GradientButton, Footer, ProjectData, ...)
+  - assets/ — images, icons
+  - main.jsx / App.jsx — app entry
+- index.html
+- tailwind.config.js
+- vite.config.js
+
+## Tips for Tailwind & formatting
+
+- To avoid Tailwind classes wrapping across lines when formatting:
+  - Disable editor word wrap or configure your formatter to preserve class lines.
+  - Install Tailwind CSS IntelliSense and a class sorter/formatter (optional).
+  - Keep long class lists as a single line or use a comment-wrapped split style if necessary.
+- Use utility breakpoints (sm, md, lg, xl) and mobile-first approach.
+
+## Tips for GSAP
+
+- Always register plugins before use: gsap.registerPlugin(ScrollTrigger, SplitText, ...).
+- Use refs (useRef) + effects (useEffect or useGSAP) to target DOM safely.
+- For scroll-linked animations prefer ScrollTrigger.create or timeline with scrollTrigger.
+
+## Adding projects
+
+- Edit src/components/ProjectData.jsx — update or add objects in the `projects` array.
+
+## Debugging
+
+- Check browser console for missing imports or undefined refs.
+- If components don't render from map(), ensure you're importing the data and returning JSX from map callbacks.
+
+## Contact
+
+- Email: ngothanhdat4002@gmail.com
+- GitHub: https://github.com/darrenAK403
+
+License: Check image asset licenses before production use.
