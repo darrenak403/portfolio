@@ -72,6 +72,7 @@
   .btn:hover {
     background: var(--color-gradient) padding-box,
       var(--color-gradient) border-box;
+    color: white;
   }
 
   .btn-light {
